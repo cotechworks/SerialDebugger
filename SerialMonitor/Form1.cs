@@ -17,6 +17,7 @@ namespace SerialMonitor
         {
             InitializeComponent();
             scanCOMPorts();
+            cmbBaud.SelectedIndex = 3;
         }
 
         private void scanCOMPorts()
@@ -38,15 +39,17 @@ namespace SerialMonitor
         {
             try
             {
-                serialPort1.PortName = cmbCOMPort.Text; // COM名設定
-                serialPort1.Open();                     // ポート接続
-                btnOpen.Enabled = false;                // 接続　Off
-                btnClose.Enabled = true;                // 切断　On
-                btnScan.Enabled = false;                // 更新　Off
-                cmbCOMPort.Enabled = false;             // COMリスト　Off
-                btnSend.Enabled = true;                 // 送信　On
-                tbxRxData.Clear();                      // 画面クリア
-                tbxRxData.AppendText("Connected\r\n");  // 接続と表示
+                serialPort1.PortName = cmbCOMPort.Text;         // COM名設定
+                serialPort1.BaudRate = int.Parse(cmbBaud.Text); // ボーレート設定
+                serialPort1.Open();                             // ポート接続
+                btnOpen.Enabled = false;                        // 接続　Off
+                btnClose.Enabled = true;                        // 切断　On
+                btnScan.Enabled = false;                        // 更新　Off
+                cmbCOMPort.Enabled = false;                     // COMリスト　Off
+                cmbBaud.Enabled = false;                        // ボーレート Off
+                btnSend.Enabled = true;                         // 送信　On
+                tbxRxData.Clear();                              // 画面クリア
+                tbxRxData.AppendText("Connected\r\n");          // 接続と表示
             }
             catch
             {
@@ -61,6 +64,7 @@ namespace SerialMonitor
             btnScan.Enabled = true;                 // 更新　On
             cmbCOMPort.Enabled = true;              // COMリスト　On
             btnSend.Enabled = false;                // 送信　Off
+            cmbBaud.Enabled = true;                 // ボーレート On
             tbxRxData.AppendText("Connected\r\n");  // 切断と表示
             try
             {
@@ -75,7 +79,18 @@ namespace SerialMonitor
         {
             try
             {
-                serialPort1.Write(tbxTxData.Text + "\r\n");
+                serialPort1.Write(tbxTxData.Text);
+                if (rbCRLF.Checked)
+                {
+                    serialPort1.Write("\r\n");
+                }else if (rbCR.Checked)
+                {
+                    serialPort1.Write("\r");
+                }
+                else if (rbLF.Checked)
+                {
+                    serialPort1.Write("\n");
+                }
             }
             catch
             {
