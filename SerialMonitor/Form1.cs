@@ -87,5 +87,32 @@ namespace SerialMonitor
         {
             tbxRxData.Clear();  // 画面クリア
         }
+
+        delegate void SetTextCallback(string text);
+
+        private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            try
+            {
+                SetText(serialPort1.ReadExisting());
+            }
+            catch
+            {
+                btnClose_Click(this, null);
+            }
+        }
+
+        private void SetText(string text)
+        {
+            if (tbxRxData.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(SetText);
+                Invoke(d, new object[] { text });
+            }
+            else
+            {
+                tbxRxData.AppendText(text);
+            }
+        }
     }
 }

@@ -40,6 +40,10 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
+            // serialPort1
+            // 
+            this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
+            // 
             // btnScan
             // 
             this.btnScan.Location = new System.Drawing.Point(12, 12);
