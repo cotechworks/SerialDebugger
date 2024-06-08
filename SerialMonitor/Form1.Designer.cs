@@ -48,6 +48,7 @@
             this.btnScan.TabIndex = 0;
             this.btnScan.Text = "更新";
             this.btnScan.UseVisualStyleBackColor = true;
+            this.btnScan.Click += new System.EventHandler(this.btnScan_Click);
             // 
             // cmbCOMPort
             // 
@@ -66,6 +67,7 @@
             this.btnOpen.TabIndex = 2;
             this.btnOpen.Text = "接続";
             this.btnOpen.UseVisualStyleBackColor = true;
+            this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
             // 
             // btnClose
             // 
@@ -75,6 +77,7 @@
             this.btnClose.TabIndex = 3;
             this.btnClose.Text = "切断";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnSend
             // 
@@ -84,6 +87,7 @@
             this.btnSend.TabIndex = 4;
             this.btnSend.Text = "送信";
             this.btnSend.UseVisualStyleBackColor = true;
+            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
             // 
             // tbxTxData
             // 
@@ -109,6 +113,7 @@
             this.btnClear.TabIndex = 7;
             this.btnClear.Text = "クリア";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // Form1
             // 
